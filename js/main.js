@@ -54,7 +54,7 @@ const speak = () => {
     }
     if(textInput.value !== ''){
         //Add background animation
-        body.style.background = '#141414 url(../img/wave.gif)';
+        body.style.background = '#141414 url(img/wave.gif)';
         body.style.backgroundRepeat = 'repeat-x';
         body.style.backgroundSize = '100% 100%';
 
