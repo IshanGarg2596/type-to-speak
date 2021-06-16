@@ -11,6 +11,7 @@ const speed = document.querySelector('#speed');
 const pitch = document.querySelector('#pitch');
 const speedValue = document.querySelector('#speed-value');
 const pitchValue = document.querySelector('#pitch-value');
+const body = document.querySelector('body');
 
 
 
@@ -45,18 +46,24 @@ if(synth.onvoiceschanged !== undefined){
 
 
 //Speak
-const Speak = () => {
+const speak = () => {
+
     //check if speaking
     if(synth.speaking){
         console.error('Already Speaking');
     }
     if(textInput.value !== ''){
+        //Add background animation
+        body.style.background = '#141414 url(../img/wave.gif)';
+        body.style.backgroundRepeat = 'repeat-x';
+        body.style.backgroundSize = '100% 100%';
+
         // Get Speak text
         const speakText  = new SpeechSynthesisUtterance(textInput.value);
         
         // Speak end
         speakText.onend = e => {
-            console.log('done Speaking');
+           body.style.background = '#141414';
         };
 
         // Speak error
