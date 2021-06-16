@@ -62,6 +62,44 @@ const Speak = () => {
         // Speak error
         speakText.onerror = e =>{
             console.error('Something went wrong!')
-        }
+        };
+
+        // Selected voice
+        const selectedVoice = voiceSelect.selectedOptions[0].getAttribute('data-name');
+
+        // Loop through voices 
+        voices.forEach(voice => {
+            if(voice.name === selectedVoice){
+                speakText.voice = voice;
+            }
+        });
+
+        //Set pitch and speed
+        speakText.rate = speed.value;
+        speakText.pitch = pitch.value;
+
+        //Speak
+        synth.speak(speakText);
+
     }
 };
+
+
+//Event Listners
+
+//Text form submit
+textForm.addEventListener('submit', e =>{
+    e.preventDefault();
+    speak();
+    textInput.blur();
+});
+
+// Rate value Change
+speed.addEventListener('change', e => speedValue.textContent = speed.value);
+
+// Pitch value Change
+pitch.addEventListener('change', e => pitchValue.textContent = pitch.value);
+
+
+// Voice Select Change
+voiceSelect.addEventListener('change', e => speak());
